@@ -1,3 +1,9 @@
+![Ruby](https://img.shields.io/badge/Ruby-3.x-red)
+![Rails](https://img.shields.io/badge/Rails-7.x-red)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-blue)
+![Docker](https://img.shields.io/badge/Docker-blue)
+![Status](https://img.shields.io/badge/status-in%20development-yellow)
+
 # FretaGo 🚚
 
 > MVP under development. This project is currently in the building and validation phase.
