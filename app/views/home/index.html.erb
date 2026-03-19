@@ -1,0 +1,59 @@
+<div class="min-h-screen bg-slate-950 text-white flex flex-col">
+  <header class="w-full border-b border-slate-800 bg-slate-950/80 backdrop-blur">
+    <div class="max-w-xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center space-x-2">
+        <div class="h-8 w-8 rounded-xl bg-emerald-500 flex items-center justify-center font-bold text-slate-950">
+          FG
+        </div>
+        <span class="font-semibold tracking-tight">FretaGo</span>
+      </div>
+      <nav class="hidden sm:flex items-center space-x-4 text-sm text-slate-300">
+        <a href="#como-funciona" class="hover:text-white">Como funciona</a>
+        <a href="#motoristas" class="hover:text-white">Para motoristas</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-1 w-full">
+    <section class="max-w-xl mx-auto px-4 py-8 space-y-8">
+      <div class="space-y-4">
+        <p class="inline-flex items-center rounded-full border border-emerald-500/40 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-300">
+          Itajaí e região &nbsp;•&nbsp; MVP inicial
+        </p>
+        <h1 class="text-2xl sm:text-3xl font-semibold leading-tight">
+          Comprou algo na OLX ou Facebook Marketplace e precisa de frete?
+          <span class="block text-emerald-400">Encontre motoristas locais rapidamente com a FretaGo.</span>
+        </h1>
+        <p class="text-sm text-slate-300">
+          Pedidos de frete simples, respostas rápidas de motoristas locais e tudo pensado para uso direto do seu celular.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <%= link_to "Pedir frete", new_pedido_path,
+                    class: "inline-flex items-center justify-center rounded-xl bg-emerald-500 px-4 py-3 text-sm font-semibold text-slate-950 shadow-sm hover:bg-emerald-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950" %>
+        <%= link_to "Sou motorista", new_motorista_path,
+                    class: "inline-flex items-center justify-center rounded-xl border border-slate-700 bg-slate-900 px-4 py-3 text-sm font-semibold text-white hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950" %>
+      </div>
+
+      <section id="como-funciona" class="space-y-3">
+        <h2 class="text-base font-semibold">Como funciona</h2>
+        <ol class="space-y-2 text-sm text-slate-300">
+          <li>1. Você preenche um pedido de frete com origem, destino e o item.</li>
+          <li>2. Motoristas locais veem os pedidos abertos e enviam propostas.</li>
+          <li>3. Você escolhe a melhor proposta e combina os detalhes diretamente.</li>
+        </ol>
+      </section>
+
+      <section id="motoristas" class="space-y-3 border-t border-slate-800 pt-6">
+        <h2 class="text-base font-semibold">Para motoristas</h2>
+        <p class="text-sm text-slate-300">
+          Cadastre-se gratuitamente, informe seu veículo e bairro de atuação e comece a receber pedidos de frete perto de você.
+        </p>
+        <%= link_to "Ver pedidos abertos", pedidos_path,
+                    class: "inline-flex items-center justify-center rounded-xl border border-slate-700 bg-slate-900 px-4 py-2 text-xs font-semibold text-white hover:bg-slate-800" %>
+      </section>
+    </section>
+  </main>
+</div>
+

@@ -1,0 +1,45 @@
+# Ignore bundler config.
+/.bundle
+
+# Ignore environment files
+.env*
+!/.env*.erb
+
+# Logs and temp files
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+
+# PIDs
+/tmp/pids/*
+!/tmp/pids/
+!/tmp/pids/.keep
+
+# Storage
+/storage/*
+!/storage/.keep
+/tmp/storage/*
+!/tmp/storage/
+!/tmp/storage/.keep
+
+# Assets
+/public/assets
+
+# Secrets
+/config/master.key
+
+# Node
+/node_modules
+yarn-debug.log*
+yarn-error.log
+
+# Vendor
+/vendor/bundle
+
+# Coverage
+/coverage
+
+# System files
+.DS_Store
+.byebug_history
