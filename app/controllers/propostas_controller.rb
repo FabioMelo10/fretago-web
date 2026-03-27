@@ -9,6 +9,7 @@ class PropostasController < ApplicationController
     @proposta = @pedido.propostas.new(proposta_params)
 
     if @proposta.save
+      @pedido.update(status: "em_negociacao") if @pedido.novo?
       redirect_to @pedido, notice: "Proposta enviada com sucesso."
     else
       @propostas = @pedido.propostas.includes(:motorista).order(created_at: :desc)

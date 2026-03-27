@@ -8,7 +8,7 @@ RSpec.describe "Propostas", type: :request do
       endereco_retirada: "A",
       endereco_entrega: "B",
       item: "C",
-      status: "aberto"
+      status: "novo"
     )
   end
 
@@ -60,7 +60,7 @@ RSpec.describe "Propostas", type: :request do
       expect(response).to redirect_to(pedido_path(pedido))
       expect(proposta1.reload.status).to eq("aceita")
       expect(proposta2.reload.status).to eq("recusada")
-      expect(pedido.reload.status).to eq("aceito")
+      expect(pedido.reload.status).to eq("fechado")
     end
   end
 end

@@ -30,7 +30,7 @@ RSpec.describe "API V1", type: :request do
         endereco_retirada: "A",
         endereco_entrega: "B",
         item: "C",
-        status: "aberto"
+        status: "novo"
       )
       motorista = Motorista.create!(nome: "Carlos", telefone: "1", veiculo: "Carro", bairro: "Centro", ativo: true)
       proposta = Proposta.create!(pedido:, motorista:, valor: 100, status: "enviada")
@@ -40,7 +40,7 @@ RSpec.describe "API V1", type: :request do
       expect(response).to have_http_status(:ok)
       body = JSON.parse(response.body)
       expect(body.dig("proposta", "status")).to eq("aceita")
-      expect(body.dig("pedido", "status")).to eq("aceito")
+      expect(body.dig("pedido", "status")).to eq("fechado")
     end
   end
 end

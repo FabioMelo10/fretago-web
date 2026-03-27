@@ -15,7 +15,7 @@ module Api
       end
 
       def create
-        pedido = Pedido.new(pedido_params.merge(status: "aberto"))
+        pedido = Pedido.new(pedido_params)
         if pedido.save
           render json: pedido.as_json(except: [:telefone]), status: :created
         else

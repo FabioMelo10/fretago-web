@@ -7,7 +7,7 @@
   <section class="rounded-xl border border-slate-800 bg-slate-900 px-4 py-3 text-sm space-y-2">
     <div class="flex items-center justify-between">
       <p class="font-medium"><%= @pedido.item %></p>
-      <span class="rounded-full bg-slate-800 px-2 py-0.5 text-[10px] font-medium text-slate-200">
+      <span class="rounded-full px-2 py-0.5 text-[10px] font-medium <%= pedido_status_badge_class(@pedido.status) %>">
         Status: <%= @pedido.status.humanize %>
       </span>
     </div>
@@ -93,7 +93,7 @@
                 <%= simple_format h(proposta.mensagem), class: "inline" %>
               </p>
             <% end %>
-            <% if @pedido.status == "aberto" && proposta.status == "enviada" %>
+            <% if @pedido.status.in?(%w[novo em_negociacao]) && proposta.status == "enviada" %>
               <div class="pt-1 flex justify-end">
                 <%= button_to "Aceitar proposta",
                               aceitar_proposta_pedido_path(@pedido, proposta_id: proposta.id),

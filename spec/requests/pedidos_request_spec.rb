@@ -18,7 +18,7 @@ RSpec.describe "Pedidos", type: :request do
         post pedidos_path, params:
       end.to change(Pedido, :count).by(1)
 
-      expect(response).to redirect_to(pedido_path(Pedido.last))
+      expect(response).to redirect_to(sucesso_pedido_path(Pedido.last))
     end
 
     it "handles invalid data" do

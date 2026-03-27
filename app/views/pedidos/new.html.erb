@@ -1,10 +1,10 @@
 <div class="max-w-xl mx-auto px-4 py-6 space-y-4">
-  <h1 class="text-xl font-semibold mb-2">Pedir frete</h1>
+  <h1 class="text-xl font-semibold mb-2">Pedir frete na sua região</h1>
   <p class="text-sm text-slate-300 mb-4">
-    Preencha os dados básicos do seu frete. Seus dados de contato serão mostrados apenas depois que você aceitar uma proposta.
+    Preencha os dados básicos do seu frete. Não é necessário login e você pode informar qualquer cidade da região.
   </p>
 
-  <%= form_with model: @pedido, class: "space-y-4" do |f| %>
+  <%= form_with model: @pedido, class: "space-y-4", data: { controller: "submit" } do |f| %>
     <% if @pedido.errors.any? %>
       <div class="rounded-lg border border-rose-500/60 bg-rose-500/10 px-3 py-2 text-xs text-rose-100">
         <p class="font-semibold mb-1">Não foi possível salvar o pedido:</p>
@@ -17,28 +17,30 @@
     <% end %>
 
     <div class="space-y-1.5">
-      <%= f.label :nome_cliente, "Seu nome", class: "block text-xs font-medium text-slate-200" %>
-      <%= f.text_field :nome_cliente, class: "w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400" %>
+      <%= f.label :nome_cliente, "Nome", class: "block text-xs font-medium text-slate-200" %>
+      <%= f.text_field :nome_cliente, placeholder: "Seu nome completo", class: "w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400" %>
     </div>
 
     <div class="space-y-1.5">
-      <%= f.label :telefone, "Telefone (WhatsApp)", class: "block text-xs font-medium text-slate-200" %>
-      <%= f.telephone_field :telefone, class: "w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400" %>
+      <%= f.label :telefone, "WhatsApp", class: "block text-xs font-medium text-slate-200" %>
+      <%= f.telephone_field :telefone, placeholder: "(47) 99999-9999", inputmode: "numeric",
+                            data: { controller: "phone-mask", action: "input->phone-mask#format" },
+                            class: "w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400" %>
     </div>
 
     <div class="space-y-1.5">
-      <%= f.label :endereco_retirada, "Endereço de retirada", class: "block text-xs font-medium text-slate-200" %>
-      <%= f.text_field :endereco_retirada, class: "w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400" %>
+      <%= f.label :endereco_retirada, "Origem", class: "block text-xs font-medium text-slate-200" %>
+      <%= f.text_field :endereco_retirada, placeholder: "Ex: Centro, Itajaí", class: "w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400" %>
     </div>
 
     <div class="space-y-1.5">
-      <%= f.label :endereco_entrega, "Endereço de entrega", class: "block text-xs font-medium text-slate-200" %>
-      <%= f.text_field :endereco_entrega, class: "w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400" %>
+      <%= f.label :endereco_entrega, "Destino", class: "block text-xs font-medium text-slate-200" %>
+      <%= f.text_field :endereco_entrega, placeholder: "Ex: Meia Praia, Itapema", class: "w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400" %>
     </div>
 
     <div class="space-y-1.5">
-      <%= f.label :item, "O que será transportado?", class: "block text-xs font-medium text-slate-200" %>
-      <%= f.text_field :item, class: "w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400" %>
+      <%= f.label :item, "Descrição do item", class: "block text-xs font-medium text-slate-200" %>
+      <%= f.text_field :item, placeholder: "Ex: Sofá 3 lugares, geladeira, cama box...", class: "w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400" %>
     </div>
 
     <div class="space-y-1.5">
@@ -46,9 +48,16 @@
       <%= f.text_area :detalhes, rows: 4, class: "w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400" %>
     </div>
 
+    <div class="hidden" aria-hidden="true">
+      <%= label_tag "pedido_website", "Website" %>
+      <%= text_field_tag "pedido[website]", nil, tabindex: -1, autocomplete: "off" %>
+    </div>
+
     <div class="flex items-center justify-between pt-2">
       <%= link_to "Voltar", root_path, class: "text-xs text-slate-300 hover:text-white" %>
-      <%= f.submit "Criar pedido", class: "inline-flex items-center rounded-xl bg-emerald-500 px-4 py-2 text-sm font-semibold text-slate-950 hover:bg-emerald-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950" %>
+      <%= f.submit "Criar pedido",
+                   data: { submit_target: "button", submit_loading_text: "Enviando..." },
+                   class: "inline-flex items-center rounded-xl bg-emerald-500 px-4 py-2 text-sm font-semibold text-slate-950 hover:bg-emerald-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 disabled:cursor-not-allowed disabled:opacity-70" %>
     </div>
   <% end %>
 </div>

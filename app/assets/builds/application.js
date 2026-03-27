@@ -8611,8 +8611,50 @@ var hello_controller_default = class extends Controller {
   }
 };
 
+// app/javascript/controllers/submit_controller.js
+var submit_controller_default = class extends Controller {
+  static targets = ["button"];
+  connect() {
+    this.element.addEventListener("submit", this.handleSubmit);
+  }
+  disconnect() {
+    this.element.removeEventListener("submit", this.handleSubmit);
+  }
+  handleSubmit = () => {
+    if (!this.hasButtonTarget) return;
+    this.buttonTarget.disabled = true;
+    this.buttonTarget.dataset.originalText = this.buttonTarget.value;
+    this.buttonTarget.value = this.buttonTarget.dataset.submitLoadingText || "Enviando...";
+  };
+};
+
+// app/javascript/controllers/phone_mask_controller.js
+var phone_mask_controller_default = class extends Controller {
+  connect() {
+    this.format();
+  }
+  format() {
+    const digits = (this.element.value || "").replace(/\D/g, "").slice(0, 11);
+    if (digits.length <= 2) {
+      this.element.value = digits;
+      return;
+    }
+    if (digits.length <= 6) {
+      this.element.value = `(${digits.slice(0, 2)}) ${digits.slice(2)}`;
+      return;
+    }
+    if (digits.length <= 10) {
+      this.element.value = `(${digits.slice(0, 2)}) ${digits.slice(2, 6)}-${digits.slice(6)}`;
+      return;
+    }
+    this.element.value = `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`;
+  }
+};
+
 // app/javascript/controllers/index.js
 application.register("hello", hello_controller_default);
+application.register("submit", submit_controller_default);
+application.register("phone-mask", phone_mask_controller_default);
 /*! Bundled license information:
 
 @hotwired/turbo/dist/turbo.es2017-esm.js:

@@ -7,7 +7,7 @@ motoristas = [
   { nome: "Ana Souza", telefone: "47988880002", veiculo: "Fiorino", bairro: "Vila Operária", ativo: true },
   { nome: "Marcos Lima", telefone: "47988880003", veiculo: "Carro com rack", bairro: "Fazenda", ativo: true },
   { nome: "Fernanda Costa", telefone: "47988880004", veiculo: "Utilitário", bairro: "São Vicente", ativo: true },
-  { nome: "Rafael Oliveira", telefone: "47988880005", veiculo: "Caminhão 3/4", bairro: "Cordeiros", ativo: true }
+  { nome: "Rafael Oliveira", telefone: "47988880005", veiculo: "Van utilitária", bairro: "Cordeiros", ativo: true }
 ]
 
 motoristas = Motorista.create!(motoristas)
@@ -41,7 +41,7 @@ enderecos = [
     endereco_entrega: enderecos.sample,
     item: itens[i],
     detalhes: "Pedido de demonstração gerado automaticamente.",
-    status: "aberto"
+    status: "novo"
   )
 
   rand(0..3).times do

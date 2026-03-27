@@ -8,7 +8,7 @@ RSpec.describe Proposta, type: :model do
       endereco_retirada: "A",
       endereco_entrega: "B",
       item: "C",
-      status: "aberto"
+      status: "novo"
     )
   end
 

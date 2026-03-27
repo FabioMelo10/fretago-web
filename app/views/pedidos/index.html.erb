@@ -1,9 +1,9 @@
 <div class="max-w-xl mx-auto px-4 py-6 space-y-4">
   <div class="flex items-center justify-between mb-2">
     <div>
-      <h1 class="text-xl font-semibold">Pedidos de frete abertos</h1>
+      <h1 class="text-xl font-semibold">Pedidos de frete</h1>
       <p class="text-xs text-slate-300 mt-1">
-        Mostrando apenas pedidos com status "aberto" em Itajaí e região.
+        Lista operacional em ordem de criação (mais recentes primeiro).
       </p>
     </div>
     <%= link_to "Voltar", root_path, class: "text-xs text-slate-300 hover:text-white" %>
@@ -13,28 +13,39 @@
     <div class="space-y-3">
       <% @pedidos.each do |pedido| %>
         <div class="rounded-xl border border-slate-800 bg-slate-900 px-3 py-3 text-sm space-y-1.5">
-          <div class="flex items-center justify-between">
-            <p class="font-medium truncate"><%= pedido.item %></p>
-            <span class="rounded-full bg-emerald-500/10 px-2 py-0.5 text-[10px] font-medium text-emerald-300">
-              Aberto
-            </span>
+          <div class="grid grid-cols-1 gap-1 text-xs">
+            <p><span class="text-slate-400">Nome:</span> <span class="font-medium"><%= pedido.nome_cliente %></span></p>
+            <p><span class="text-slate-400">Telefone:</span> <span class="font-medium"><%= pedido.telefone %></span></p>
+            <p><span class="text-slate-400">Origem:</span> <span class="font-medium"><%= pedido.endereco_retirada %></span></p>
+            <p><span class="text-slate-400">Destino:</span> <span class="font-medium"><%= pedido.endereco_entrega %></span></p>
+            <p><span class="text-slate-400">Item:</span> <span class="font-medium"><%= pedido.item %></span></p>
           </div>
-          <p class="text-xs text-slate-300">
-            De <span class="font-medium"><%= pedido.endereco_retirada %></span>
-            para <span class="font-medium"><%= pedido.endereco_entrega %></span>
-          </p>
-          <p class="text-[11px] text-slate-400">
-            Pedido criado há <%= time_ago_in_words(pedido.created_at) %>.
-          </p>
-          <div class="pt-1.5 flex justify-end">
+
+          <div class="flex items-center justify-between pt-1">
+            <span class="rounded-full px-2 py-0.5 text-[10px] font-medium <%= pedido_status_badge_class(pedido.status) %>">
+              <%= pedido.status.humanize %>
+            </span>
+            <p class="text-[11px] text-slate-400">há <%= time_ago_in_words(pedido.created_at) %></p>
+          </div>
+
+          <div class="pt-1.5 flex flex-wrap gap-2">
             <%= link_to "Ver detalhes", pedido_path(pedido),
                         class: "inline-flex items-center rounded-lg border border-slate-700 px-3 py-1 text-[11px] font-medium text-slate-100 hover:bg-slate-800" %>
+            <%= button_to "Em negociação", atualizar_status_pedido_path(pedido, status: "em_negociacao"),
+                          method: :patch,
+                          class: "inline-flex items-center rounded-lg bg-amber-500/20 px-3 py-1 text-[11px] font-medium text-amber-300 hover:bg-amber-500/30" %>
+            <%= button_to "Fechado", atualizar_status_pedido_path(pedido, status: "fechado"),
+                          method: :patch,
+                          class: "inline-flex items-center rounded-lg bg-emerald-500/20 px-3 py-1 text-[11px] font-medium text-emerald-300 hover:bg-emerald-500/30" %>
+            <%= button_to "Cancelado", atualizar_status_pedido_path(pedido, status: "cancelado"),
+                          method: :patch,
+                          class: "inline-flex items-center rounded-lg bg-rose-500/20 px-3 py-1 text-[11px] font-medium text-rose-300 hover:bg-rose-500/30" %>
           </div>
         </div>
       <% end %>
     </div>
   <% else %>
-    <p class="text-sm text-slate-300">Não há pedidos abertos no momento.</p>
+    <p class="text-sm text-slate-300">Não há pedidos cadastrados no momento.</p>
   <% end %>
 </div>
 

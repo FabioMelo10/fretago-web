@@ -1,0 +1,31 @@
+<div class="max-w-xl mx-auto px-4 py-10 space-y-6">
+  <div class="space-y-2 text-center">
+    <h1 class="text-2xl font-semibold">Pedido enviado com sucesso!</h1>
+    <p class="text-sm text-slate-300">
+      Agora vamos buscar motoristas próximos para atender seu frete.
+    </p>
+    <p class="text-xs text-slate-400">
+      Código do pedido: <span class="font-mono text-emerald-300">#<%= @pedido.id %></span>
+    </p>
+  </div>
+
+  <div class="space-y-3">
+    <p class="text-sm text-slate-300 text-center">
+      Para agilizar, fale direto conosco no WhatsApp.
+    </p>
+    <div class="flex flex-col sm:flex-row justify-center gap-3">
+      <%= link_to "Falar no WhatsApp", pedido_whatsapp_link(@pedido),
+                  target: "_blank",
+                  rel: "noopener noreferrer",
+                  class: "inline-flex items-center justify-center rounded-xl bg-emerald-500 px-5 py-3 text-sm font-semibold text-slate-950 hover:bg-emerald-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950" %>
+      <%= link_to "Ver detalhes do pedido", pedido_path(@pedido),
+                  class: "inline-flex items-center justify-center rounded-xl border border-slate-700 bg-slate-900 px-5 py-3 text-sm font-semibold text-white hover:bg-slate-800" %>
+    </div>
+  </div>
+
+  <div class="pt-4 text-center">
+    <%= link_to "Voltar para a página inicial", root_path,
+                class: "text-xs text-slate-400 hover:text-slate-200" %>
+  </div>
+</div>
+

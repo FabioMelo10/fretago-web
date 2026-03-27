@@ -30,6 +30,7 @@ module Api
       def create
         proposta = @pedido.propostas.new(proposta_params.merge(status: "enviada"))
         if proposta.save
+          @pedido.update(status: "em_negociacao") if @pedido.novo?
           render json: proposta.as_json(only: %i[id valor status mensagem pedido_id motorista_id]), status: :created
         else
           render json: { errors: proposta.errors.full_messages }, status: :unprocessable_entity
@@ -43,7 +44,7 @@ module Api
         Pedido.transaction do
           pedido.propostas.where.not(id: proposta.id).update_all(status: "recusada")
           proposta.update!(status: "aceita")
-          pedido.update!(status: "aceito")
+          pedido.update!(status: "fechado")
         end
 
         render json: {

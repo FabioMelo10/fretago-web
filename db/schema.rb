@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_03_16_221922) do
+ActiveRecord::Schema[7.2].define(version: 2026_03_16_235000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -31,7 +31,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_03_16_221922) do
     t.string "endereco_entrega", null: false
     t.string "item", null: false
     t.text "detalhes"
-    t.string "status", null: false
+    t.string "status", default: "novo", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

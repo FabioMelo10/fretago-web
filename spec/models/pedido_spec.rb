@@ -8,7 +8,7 @@ RSpec.describe Pedido, type: :model do
       endereco_retirada: "Bairro Centro, Itajaí",
       endereco_entrega: "Bairro Fazenda, Itajaí",
       item: "Geladeira",
-      status: "aberto"
+      status: "novo"
     )
 
     expect(pedido).to be_valid

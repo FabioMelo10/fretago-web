@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     resources :propostas, only: %i[new create]
     member do
       patch :aceitar_proposta
+      patch :atualizar_status
+      get :sucesso
     end
   end
 
