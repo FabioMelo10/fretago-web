@@ -1,17 +1,12 @@
 🚚 FretaGo
 
-FretaGo is a regional MVP marketplace designed to connect customers with nearby drivers for small and fast freight deliveries.
+FretaGo is a regional MVP marketplace that connects customers with nearby drivers for small and fast freight deliveries — focusing on real-world logistics needs like furniture transport, store pickups, and marketplace deliveries.
 
-It focuses on solving real-world logistics needs such as:
+## 📸 Preview
 
-Furniture transport
-Appliance delivery
-Store pickups
-OLX and Facebook Marketplace deliveries
+![FretaGo Screenshot](./docs/preview.png)
 
-Built with Ruby on Rails, the project aims to validate a scalable logistics solution starting from local demand.
-
-📍 Coverage Area
+## 📍 Coverage Area
 
 FretaGo currently operates in:
 
@@ -23,12 +18,11 @@ Nearby cities
 
 The platform is designed to expand regionally over time.
 
-⚡ Current MVP Focus
+## ⚡ Current MVP Focus
 
 The current version is focused on validation and real usage, not full automation.
 
 Main flow:
-
 User submits a freight request (no login required)
 Request is stored and processed
 Customer is redirected to WhatsApp for fast negotiation
@@ -37,26 +31,49 @@ Freight is completed
 
 👉 The goal is speed, simplicity, and real-world execution
 
+## 💡 Why this project?
+
+FretaGo was created to solve a real-world problem:
+
+People often need fast delivery for small items but struggle to find reliable drivers quickly.
+
+Instead of over-engineering, this project focuses on:
+
+Real usage
+Fast validation
+Simple and effective solutions
+Direct communication via WhatsApp
 🧩 Features
-✅ Implemented (MVP)
+✅ Current MVP
 Freight request creation (origin, destination, item)
 No-login flow for fast conversion
 Regional positioning (local drivers)
 Success page with WhatsApp integration
 Pre-filled WhatsApp message for faster contact
 Simple request management (Rails backend)
-Responsive UI using TailwindCSS
-🚀 Future Improvements
+Responsive UI with TailwindCSS
 
-Planned next steps based on real usage:
+## 🚀 Future Improvements
+
+Planned based on real-world usage:
 
 Driver matching optimization
-Request status tracking (negotiating, completed, canceled)
+Request status tracking
 Pricing support and suggestions
 Admin dashboard improvements
 Driver onboarding flow
 Regional expansion
-🛠 Tech Stack
+
+## 📚 Key Learnings
+
+Building MVPs focused on real-world validation
+Designing backend systems with Ruby on Rails
+Creating conversion-oriented user flows
+Integrating WhatsApp as a business tool
+Balancing product development with business execution
+
+## 🛠 Tech Stack
+
 Ruby 3.x
 Ruby on Rails 7.x
 PostgreSQL
@@ -82,35 +99,30 @@ Then open:
 👉 http://localhost:3000
 
 🔐 Environment Variables
-
-Configure your WhatsApp number:
-
 FRETAGO_WHATSAPP_NUMBER=5547999999999
 📌 Project Status
-
-This project is:
-
-An MVP under validation
+MVP under validation
 Focused on real-world usage
 Continuously evolving based on feedback
 ⚠️ Disclaimer
 
-This is a portfolio and experimental project created for learning, validation, and demonstration purposes.
+This project is intended for portfolio and learning purposes.
 
-It is not intended for production use at scale (yet).
+It is not yet a production-ready logistics platform.
 
-📄 License
+## 📄 License
 
-This project is for educational and portfolio use.
+## MIT License
 
-👨‍💻 Author
+## 👨‍💻 Author
 
 Fábio Lucas de Melo
 
 GitHub: https://github.com/FabioMelo10
 LinkedIn: https://www.linkedin.com/in/fabio-lucas-de-melo/
-💥 Final Note
 
-FretaGo is not just a project — it's a real attempt to build a business from scratch, starting with a simple idea:
+## 💥 Final Note
 
-Connect people who need fast delivery with drivers who are already nearby.
+FretaGo is not just a project — it's a real attempt to build a business from scratch.
+
+Start simple. Validate fast. Grow with real users.
