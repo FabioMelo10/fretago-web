@@ -1,288 +1,116 @@
-## FretaGo
+🚚 FretaGo
 
-FretaGo é um marketplace web-first para fretes locais focado em pessoas que compraram móveis, eletrodomésticos ou outros itens em plataformas como OLX ou Facebook Marketplace e precisam de um motorista para fazer o transporte. A primeira região de operação é Itajaí, Santa Catarina, Brasil.
+FretaGo is a regional MVP marketplace designed to connect customers with nearby drivers for small and fast freight deliveries.
 
-### Objetivo de negócio
+It focuses on solving real-world logistics needs such as:
 
-- **Conectar rapidamente clientes que precisam de frete com motoristas locais**, de forma simples, mobile-first e segura.
-- Permitir que clientes criem pedidos de frete, motoristas enviem propostas e o cliente aceite a melhor opção.
+Furniture transport
+Appliance delivery
+Store pickups
+OLX and Facebook Marketplace deliveries
 
----
+Built with Ruby on Rails, the project aims to validate a scalable logistics solution starting from local demand.
 
-### Tecnologias
+📍 Coverage Area
 
-- **Backend**: Ruby on Rails 7.2, PostgreSQL
-- **Frontend**: TailwindCSS (mobile-first), Hotwire (Turbo) / Stimulus
-- **Outros**: RSpec para testes automatizados, esbuild para bundling JS
+FretaGo currently operates in:
 
----
+Itajaí
+Navegantes
+Balneário Camboriú
+Camboriú
+Nearby cities
 
-### Requisitos
+The platform is designed to expand regionally over time.
 
-- Ruby (3.2.x recomendado)
-- PostgreSQL
-- Node.js + Yarn (para esbuild/Tailwind)
+⚡ Current MVP Focus
 
----
+The current version is focused on validation and real usage, not full automation.
 
-### Setup do projeto
+Main flow:
 
-1. **Instalar dependências Ruby**
+User submits a freight request (no login required)
+Request is stored and processed
+Customer is redirected to WhatsApp for fast negotiation
+Driver is matched manually
+Freight is completed
 
-```bash
+👉 The goal is speed, simplicity, and real-world execution
+
+🧩 Features
+✅ Implemented (MVP)
+Freight request creation (origin, destination, item)
+No-login flow for fast conversion
+Regional positioning (local drivers)
+Success page with WhatsApp integration
+Pre-filled WhatsApp message for faster contact
+Simple request management (Rails backend)
+Responsive UI using TailwindCSS
+🚀 Future Improvements
+
+Planned next steps based on real usage:
+
+Driver matching optimization
+Request status tracking (negotiating, completed, canceled)
+Pricing support and suggestions
+Admin dashboard improvements
+Driver onboarding flow
+Regional expansion
+🛠 Tech Stack
+Ruby 3.x
+Ruby on Rails 7.x
+PostgreSQL
+TailwindCSS
+Hotwire / Stimulus
+▶️ Running Locally
+
+# Install dependencies
+
 bundle install
-```
 
-2. **Configurar banco de dados**
+# Setup database
 
-Atualize `config/database.yml` se necessário (usuário/senha/host do PostgreSQL) e depois:
-
-```bash
 bin/rails db:prepare
-```
-
-Isso cria e migra os bancos `development` e `test`.
-
-3. **Rodar seeds para dados de demonstração**
-
-```bash
 bin/rails db:seed
-```
 
-Serão criados:
-- 5 motoristas ativos
-- 10 pedidos de frete abertos
-- algumas propostas associadas
+# Run the app
 
-4. **Rodar o servidor de desenvolvimento**
-
-```bash
 bin/dev
-```
 
-Aplicação disponível em `http://localhost:3000`.
+Then open:
 
----
+👉 http://localhost:3000
 
-### Como rodar os testes
+🔐 Environment Variables
 
-Os testes usam RSpec:
+Configure your WhatsApp number:
 
-```bash
-bundle exec rspec
-```
+FRETAGO_WHATSAPP_NUMBER=5547999999999
+📌 Project Status
 
-Estão cobertos:
-- Validações e associações de `Pedido`, `Motorista` e `Proposta`
-- Fluxos HTTP principais (criar pedido, motorista, proposta, aceitar proposta)
-- Endpoints JSON da API v1
+This project is:
 
----
+An MVP under validation
+Focused on real-world usage
+Continuously evolving based on feedback
+⚠️ Disclaimer
 
-### Principais rotas web (HTML)
+This is a portfolio and experimental project created for learning, validation, and demonstration purposes.
 
-- **Home / Landing page**
-  - `GET /` → `HomeController#index`
+It is not intended for production use at scale (yet).
 
-- **Pedidos (clientes e motoristas)**
-  - `GET /pedidos` → lista apenas pedidos com status `aberto` (visão para motoristas)
-  - `GET /pedidos/new` → formulário de criação de pedido
-  - `POST /pedidos` → cria um pedido com status `aberto`
-  - `GET /pedidos/:id` → detalhes do pedido, envio de propostas e listagem de propostas
-  - `PATCH /pedidos/:id/aceitar_proposta?proposta_id=:proposta_id`
-    - cliente aceita uma proposta:
-      - proposta selecionada → `aceita`
-      - demais propostas do pedido → `recusada`
-      - pedido → `aceito`
+📄 License
 
-- **Motoristas**
-  - `GET /motoristas/new` → formulário de cadastro de motorista
-  - `POST /motoristas` → cria motorista com `ativo = true`
+This project is for educational and portfolio use.
 
-- **Propostas (via interface web)**
-  - `GET /pedidos/:pedido_id/propostas/new` → (opcional, UI) nova proposta
-  - `POST /pedidos/:pedido_id/propostas` → cria proposta com status `enviada`
+👨‍💻 Author
 
----
+Fábio Lucas de Melo
 
-### API JSON v1 (para uso em Postman)
+GitHub: https://github.com/FabioMelo10
+LinkedIn: https://www.linkedin.com/in/fabio-lucas-de-melo/
+💥 Final Note
 
-Namespace base: `/api/v1`
+FretaGo is not just a project — it's a real attempt to build a business from scratch, starting with a simple idea:
 
-#### 1) Pedidos
-
-- **Listar pedidos**
-
-  - `GET /api/v1/pedidos`
-  - Resposta (exemplo):
-
-  ```json
-  [
-    {
-      "id": 1,
-      "nome_cliente": "Cliente 1",
-      "endereco_retirada": "Bairro Centro, Itajaí",
-      "endereco_entrega": "Bairro Fazenda, Itajaí",
-      "item": "Sofá de 3 lugares",
-      "status": "aberto",
-      "created_at": "2026-03-16T22:10:00Z"
-    }
-  ]
-  ```
-
-- **Mostrar um pedido**
-
-  - `GET /api/v1/pedidos/:id`
-  - Inclui propostas associadas (sem expor telefone do cliente).
-
-  ```json
-  {
-    "id": 1,
-    "nome_cliente": "Cliente 1",
-    "telefone": "47990000000",
-    "endereco_retirada": "Bairro Centro, Itajaí",
-    "endereco_entrega": "Bairro Fazenda, Itajaí",
-    "item": "Sofá de 3 lugares",
-    "status": "aberto",
-    "propostas": [
-      {
-        "id": 5,
-        "valor": "150.0",
-        "status": "enviada",
-        "motorista_id": 2
-      }
-    ]
-  }
-  ```
-
-- **Criar pedido**
-
-  - `POST /api/v1/pedidos`
-  - Body (JSON):
-
-  ```json
-  {
-    "pedido": {
-      "nome_cliente": "João da Silva",
-      "telefone": "47999999999",
-      "endereco_retirada": "Bairro Centro, Itajaí",
-      "endereco_entrega": "Bairro Fazenda, Itajaí",
-      "item": "Geladeira",
-      "detalhes": "Geladeira em bom estado, precisa subir 2 andares."
-    }
-  }
-  ```
-
-  - Respostas:
-    - **201 Created** com JSON do pedido (status `aberto`).
-    - **422 Unprocessable Entity** com:
-
-    ```json
-    { "errors": ["Nome cliente não pode ficar em branco", "..."] }
-    ```
-
-#### 2) Motoristas
-
-- **Listar motoristas ativos**
-
-  - `GET /api/v1/motoristas`
-
-- **Mostrar motorista**
-
-  - `GET /api/v1/motoristas/:id`
-
-- **Criar motorista**
-
-  - `POST /api/v1/motoristas`
-  - Body:
-
-  ```json
-  {
-    "motorista": {
-      "nome": "Carlos Souza",
-      "telefone": "47988887777",
-      "veiculo": "Caminhonete",
-      "bairro": "Centro"
-    }
-  }
-  ```
-
-  - Respostas:
-    - **201 Created** com JSON do motorista
-    - **422 Unprocessable Entity** com `{ "errors": [...] }`
-
-#### 3) Propostas
-
-- **Listar propostas**
-
-  - `GET /api/v1/propostas`
-
-- **Mostrar proposta**
-
-  - `GET /api/v1/propostas/:id`
-
-- **Criar proposta para um pedido**
-
-  - `POST /api/v1/pedidos/:pedido_id/propostas`
-  - Body:
-
-  ```json
-  {
-    "proposta": {
-      "motorista_id": 1,
-      "valor": 150.0,
-      "mensagem": "Consigo buscar hoje à tarde."
-    }
-  }
-  ```
-
-  - Respostas:
-    - **201 Created** com JSON `{ "id", "pedido_id", "motorista_id", "valor", "status", "mensagem" }`
-    - **422 Unprocessable Entity** com `{ "errors": [...] }`
-
-#### 4) Aceitar proposta (API)
-
-- **Aceitar uma proposta**
-
-  - `PATCH /api/v1/propostas/:id/aceitar`
-  - Sem body obrigatório.
-  - Comportamento:
-    - proposta selecionada → `aceita`
-    - demais propostas do mesmo pedido → `recusada`
-    - pedido → `aceito`
-  - Resposta (sucesso):
-
-  ```json
-  {
-    "pedido": { "id": 1, "status": "aceito" },
-    "proposta": { "id": 5, "status": "aceita" }
-  }
-  ```
-
----
-
-### Segurança e privacidade
-
-- **Defaults do Rails**: CSRF habilitado na camada HTML, parâmetros fortes utilizados em todos os controllers.
-- **Minimização de dados**:
-  - Listagens públicas de pedidos (`/pedidos` e `GET /api/v1/pedidos`) mostram apenas o necessário para decisão do motorista (origem, destino, item, status).
-  - Telefone do cliente não é exposto em listagens públicas.
-- **Validações fortes** em `Pedido`, `Motorista` e `Proposta` com constraints também em nível de banco.
-- **Preparado para LGPD**:
-  - Estrutura de controllers e rotas pronta para receber autenticação/autorização futura (ex.: clientes vs motoristas vs admin).
-  - Fácil extensão para adicionar:
-    - autenticação (`has_secure_password` ou Devise),
-    - autorização (Pundit/CanCanCan),
-    - painel administrativo,
-    - notificações por WhatsApp,
-    - suporte PWA avançado.
-
----
-
-### Próximos passos sugeridos
-
-- Implementar autenticação básica para diferenciar fluxos de cliente e motorista.
-- Adicionar um painel simples de administração (por exemplo, via gem administrate ou Rails Admin).
-- Integrar envio de notificações via WhatsApp (ex.: através de um provider externo) quando propostas forem criadas ou aceitas.
-- Evoluir o layout mobile-first para um design ainda mais refinado e adicionar instalação como PWA para uso em tela cheia no celular.
-
+Connect people who need fast delivery with drivers who are already nearby.
