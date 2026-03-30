@@ -1,5 +1,6 @@
 class PropostasController < ApplicationController
   before_action :set_pedido
+  before_action :autenticar_motorista!
 
   def new
     @proposta = @pedido.propostas.new
@@ -25,7 +26,6 @@ class PropostasController < ApplicationController
   end
 
   def proposta_params
-    params.require(:proposta).permit(:motorista_id, :valor, :mensagem).merge(status: "enviada")
+    params.require(:proposta).permit(:valor, :mensagem).merge(status: "enviada", motorista: motorista_atual)
   end
 end
-

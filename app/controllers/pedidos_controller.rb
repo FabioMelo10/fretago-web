@@ -1,8 +1,9 @@
 class PedidosController < ApplicationController
   before_action :set_pedido, only: %i[show aceitar_proposta sucesso atualizar_status]
+  before_action :autenticar_motorista!, only: %i[index show aceitar_proposta atualizar_status]
 
   def index
-    @pedidos = Pedido.order(created_at: :desc)
+    redirect_to motorista_painel_path
   end
 
   def show
@@ -89,4 +90,3 @@ class PedidosController < ApplicationController
     false
   end
 end
-

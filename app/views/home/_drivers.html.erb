@@ -1,0 +1,58 @@
+<section id="motoristas" role="tabpanel" data-tabs-target="panel" data-panel-id="motoristas" class="max-w-xl mx-auto px-4 py-8 space-y-6 hidden">
+  <div class="space-y-3">
+    <h2 class="text-2xl font-bold">Ganhe mais com FretaGo</h2>
+    <p class="text-slate-300">Cadastre-se gratuitamente e comece a receber pedidos de frete perto de você.</p>
+  </div>
+
+  <div class="space-y-4">
+    <div class="border border-slate-700 rounded-lg p-4 space-y-2">
+      <h3 class="font-semibold flex items-center gap-2">
+        <span class="text-lg">⚡</span> Rápido e fácil
+      </h3>
+      <p class="text-sm text-slate-300">Cadastro profissional com validação de CPF, dados do veículo e cidade de atuação.</p>
+    </div>
+
+    <div class="border border-slate-700 rounded-lg p-4 space-y-2">
+      <h3 class="font-semibold flex items-center gap-2">
+        <span class="text-lg">📱</span> Receba pedidos próximos
+      </h3>
+      <p class="text-sm text-slate-300">Fique atento às notificações e receba pedidos de frete na sua região.</p>
+    </div>
+
+    <div class="border border-slate-700 rounded-lg p-4 space-y-2">
+      <h3 class="font-semibold flex items-center gap-2">
+        <span class="text-lg">💰</span> Acerte seus valores
+      </h3>
+      <p class="text-sm text-slate-300">Você negocia diretamente com o cliente e define o melhor preço para seu frete.</p>
+    </div>
+  </div>
+
+  <div class="border border-emerald-500/30 bg-emerald-500/5 rounded-lg p-4 space-y-3">
+    <h3 class="font-semibold text-base">Requisitos para motoristas</h3>
+    <ul class="space-y-2 text-sm text-slate-300">
+      <li class="flex items-start space-x-2">
+        <span class="text-emerald-400 font-bold mt-0.5">✓</span>
+        <span>Ser maior de idade</span>
+      </li>
+      <li class="flex items-start space-x-2">
+        <span class="text-emerald-400 font-bold mt-0.5">✓</span>
+        <span>Ter um veículo (Fiorino, caminhonete, carro, van, etc.)</span>
+      </li>
+      <li class="flex items-start space-x-2">
+        <span class="text-emerald-400 font-bold mt-0.5">✓</span>
+        <span>Estar na região de Itajaí e proximidades</span>
+      </li>
+      <li class="flex items-start space-x-2">
+        <span class="text-emerald-400 font-bold mt-0.5">✓</span>
+        <span>Disponibilidade para realizar fretes</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="space-y-3">
+    <%= link_to "Cadastrar como motorista", new_motorista_path,
+                class: "w-full inline-flex items-center justify-center rounded-xl bg-emerald-500 px-4 py-3 text-sm font-semibold text-slate-950 shadow-sm hover:bg-emerald-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950" %>
+    <%= link_to "Fazer login como motorista", new_motorista_sessao_path,
+                class: "w-full inline-flex items-center justify-center rounded-xl border border-emerald-500/60 bg-slate-900/50 px-4 py-3 text-sm font-semibold text-emerald-300 hover:bg-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950" %>
+  </div>
+</section>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_03_16_235000) do
+ActiveRecord::Schema[7.2].define(version: 2026_03_30_101000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +22,19 @@ ActiveRecord::Schema[7.2].define(version: 2026_03_16_235000) do
     t.boolean "ativo", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "email"
+    t.string "cpf"
+    t.string "renavam"
+    t.string "placa_veiculo"
+    t.string "tipo_veiculo"
+    t.string "modelo_veiculo"
+    t.integer "ano_veiculo"
+    t.string "cidade_atuacao"
+    t.string "password_digest"
+    t.index ["cpf"], name: "index_motoristas_on_cpf", unique: true
+    t.index ["email"], name: "index_motoristas_on_email", unique: true
+    t.index ["placa_veiculo"], name: "index_motoristas_on_placa_veiculo", unique: true
+    t.index ["renavam"], name: "index_motoristas_on_renavam", unique: true
   end
 
   create_table "pedidos", force: :cascade do |t|

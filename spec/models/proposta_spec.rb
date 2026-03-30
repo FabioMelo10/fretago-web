@@ -14,8 +14,17 @@ RSpec.describe Proposta, type: :model do
 
   let(:motorista) do
     Motorista.create!(
-      nome: "Carlos",
+      nome: "Carlos da Silva",
       telefone: "47988888888",
+      email: "carlos@example.com",
+      cpf: "12345678901",
+      renavam: "12345678901",
+      placa_veiculo: "ABC1D23",
+      tipo_veiculo: "Caminhonete",
+      modelo_veiculo: "Hilux",
+      cidade_atuacao: "Itajaí",
+      password: "SenhaForte123",
+      password_confirmation: "SenhaForte123",
       veiculo: "Caminhonete",
       bairro: "Centro",
       ativo: true
@@ -46,5 +55,4 @@ RSpec.describe Proposta, type: :model do
     expect(proposta.errors[:valor]).to be_present
   end
 end
-
 

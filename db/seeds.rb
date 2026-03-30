@@ -3,11 +3,91 @@ Proposta.delete_all
 Pedido.delete_all
 
 motoristas = [
-  { nome: "Carlos Silva", telefone: "47988880001", veiculo: "Caminhonete", bairro: "Centro", ativo: true },
-  { nome: "Ana Souza", telefone: "47988880002", veiculo: "Fiorino", bairro: "Vila Operária", ativo: true },
-  { nome: "Marcos Lima", telefone: "47988880003", veiculo: "Carro com rack", bairro: "Fazenda", ativo: true },
-  { nome: "Fernanda Costa", telefone: "47988880004", veiculo: "Utilitário", bairro: "São Vicente", ativo: true },
-  { nome: "Rafael Oliveira", telefone: "47988880005", veiculo: "Van utilitária", bairro: "Cordeiros", ativo: true }
+  {
+    nome: "Carlos Silva",
+    telefone: "47988880001",
+    email: "carlos.silva@fretago.com",
+    cpf: "12345678901",
+    renavam: "12345678901",
+    placa_veiculo: "ABC1D23",
+    tipo_veiculo: "Caminhonete",
+    modelo_veiculo: "Hilux",
+    ano_veiculo: 2020,
+    cidade_atuacao: "Itajaí",
+    veiculo: "Caminhonete",
+    bairro: "Centro",
+    password: "SenhaForte123",
+    password_confirmation: "SenhaForte123",
+    ativo: true
+  },
+  {
+    nome: "Ana Souza",
+    telefone: "47988880002",
+    email: "ana.souza@fretago.com",
+    cpf: "12345678902",
+    renavam: "12345678902",
+    placa_veiculo: "DEF1G23",
+    tipo_veiculo: "Fiorino",
+    modelo_veiculo: "Fiorino Endurance",
+    ano_veiculo: 2021,
+    cidade_atuacao: "Itajaí",
+    veiculo: "Fiorino",
+    bairro: "Vila Operária",
+    password: "SenhaForte123",
+    password_confirmation: "SenhaForte123",
+    ativo: true
+  },
+  {
+    nome: "Marcos Lima",
+    telefone: "47988880003",
+    email: "marcos.lima@fretago.com",
+    cpf: "12345678903",
+    renavam: "12345678903",
+    placa_veiculo: "GHI1J23",
+    tipo_veiculo: "Carro com rack",
+    modelo_veiculo: "Duster",
+    ano_veiculo: 2019,
+    cidade_atuacao: "Navegantes",
+    veiculo: "Carro com rack",
+    bairro: "Fazenda",
+    password: "SenhaForte123",
+    password_confirmation: "SenhaForte123",
+    ativo: true
+  },
+  {
+    nome: "Fernanda Costa",
+    telefone: "47988880004",
+    email: "fernanda.costa@fretago.com",
+    cpf: "12345678904",
+    renavam: "12345678904",
+    placa_veiculo: "JKL1M23",
+    tipo_veiculo: "Utilitário",
+    modelo_veiculo: "Doblo Cargo",
+    ano_veiculo: 2018,
+    cidade_atuacao: "Balneário Camboriú",
+    veiculo: "Utilitário",
+    bairro: "São Vicente",
+    password: "SenhaForte123",
+    password_confirmation: "SenhaForte123",
+    ativo: true
+  },
+  {
+    nome: "Rafael Oliveira",
+    telefone: "47988880005",
+    email: "rafael.oliveira@fretago.com",
+    cpf: "12345678905",
+    renavam: "12345678905",
+    placa_veiculo: "NOP1Q23",
+    tipo_veiculo: "Van utilitária",
+    modelo_veiculo: "Master",
+    ano_veiculo: 2022,
+    cidade_atuacao: "Itajaí",
+    veiculo: "Van utilitária",
+    bairro: "Cordeiros",
+    password: "SenhaForte123",
+    password_confirmation: "SenhaForte123",
+    ativo: true
+  }
 ]
 
 motoristas = Motorista.create!(motoristas)

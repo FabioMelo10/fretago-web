@@ -32,7 +32,22 @@ RSpec.describe "API V1", type: :request do
         item: "C",
         status: "novo"
       )
-      motorista = Motorista.create!(nome: "Carlos", telefone: "1", veiculo: "Carro", bairro: "Centro", ativo: true)
+      motorista = Motorista.create!(
+        nome: "Carlos da Silva",
+        telefone: "47988888888",
+        email: "carlos@example.com",
+        cpf: "12345678901",
+        renavam: "12345678901",
+        placa_veiculo: "ABC1D23",
+        tipo_veiculo: "Carro",
+        modelo_veiculo: "Onix",
+        cidade_atuacao: "Itajaí",
+        password: "SenhaForte123",
+        password_confirmation: "SenhaForte123",
+        veiculo: "Carro",
+        bairro: "Centro",
+        ativo: true
+      )
       proposta = Proposta.create!(pedido:, motorista:, valor: 100, status: "enviada")
 
       patch "/api/v1/propostas/#{proposta.id}/aceitar"
@@ -44,4 +59,3 @@ RSpec.describe "API V1", type: :request do
     end
   end
 end
-

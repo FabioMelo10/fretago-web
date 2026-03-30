@@ -1,7 +1,7 @@
 <div class="max-w-xl mx-auto px-4 py-6 space-y-4">
   <h1 class="text-xl font-semibold mb-2">Cadastro de motorista</h1>
   <p class="text-sm text-slate-300 mb-4">
-    Informe seus dados básicos para receber pedidos de frete em Itajaí e região.
+    Preencha seus dados profissionais para liberar acesso à área de fretes.
   </p>
 
   <%= form_with model: @motorista, url: motoristas_path, class: "space-y-4" do |f| %>
@@ -23,23 +23,70 @@
 
     <div class="space-y-1.5">
       <%= f.label :telefone, "Telefone (WhatsApp)", class: "block text-xs font-medium text-slate-200" %>
-      <%= f.telephone_field :telefone, class: "w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400" %>
+      <%= f.telephone_field :telefone, required: true, data: { controller: "phone-mask", action: "input->phone-mask#format blur->phone-mask#format" }, class: "w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400" %>
     </div>
 
     <div class="space-y-1.5">
-      <%= f.label :veiculo, "Veículo (ex: Fiorino, caminhonete)", class: "block text-xs font-medium text-slate-200" %>
-      <%= f.text_field :veiculo, class: "w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400" %>
+      <%= f.label :email, "E-mail", class: "block text-xs font-medium text-slate-200" %>
+      <%= f.email_field :email, required: true, autocomplete: "email", class: "w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400" %>
     </div>
 
     <div class="space-y-1.5">
-      <%= f.label :bairro, "Bairro base", class: "block text-xs font-medium text-slate-200" %>
-      <%= f.text_field :bairro, class: "w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400" %>
+      <%= f.label :cpf, "CPF (somente números)", class: "block text-xs font-medium text-slate-200" %>
+      <%= f.text_field :cpf, required: true, inputmode: "numeric", maxlength: 14, class: "w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400" %>
+    </div>
+
+    <div class="space-y-1.5">
+      <%= f.label :renavam, "Renavam", class: "block text-xs font-medium text-slate-200" %>
+      <%= f.text_field :renavam, required: true, inputmode: "numeric", class: "w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400" %>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="space-y-1.5">
+        <%= f.label :placa_veiculo, "Placa do veículo", class: "block text-xs font-medium text-slate-200" %>
+        <%= f.text_field :placa_veiculo, required: true, class: "uppercase w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400" %>
+      </div>
+
+      <div class="space-y-1.5">
+        <%= f.label :ano_veiculo, "Ano do veículo", class: "block text-xs font-medium text-slate-200" %>
+        <%= f.number_field :ano_veiculo, min: 1980, max: Date.current.year + 1, class: "w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400" %>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="space-y-1.5">
+        <%= f.label :tipo_veiculo, "Tipo de veículo", class: "block text-xs font-medium text-slate-200" %>
+        <%= f.text_field :tipo_veiculo, required: true, placeholder: "Ex: Fiorino, Van", class: "w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400" %>
+      </div>
+
+      <div class="space-y-1.5">
+        <%= f.label :modelo_veiculo, "Modelo do veículo", class: "block text-xs font-medium text-slate-200" %>
+        <%= f.text_field :modelo_veiculo, required: true, class: "w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400" %>
+      </div>
+    </div>
+
+    <div class="space-y-1.5">
+      <%= f.label :cidade_atuacao, "Cidade de atuação", class: "block text-xs font-medium text-slate-200" %>
+      <%= f.text_field :cidade_atuacao, required: true, class: "w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400" %>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="space-y-1.5">
+        <%= f.label :password, "Senha", class: "block text-xs font-medium text-slate-200" %>
+        <%= f.password_field :password, required: true, autocomplete: "new-password", class: "w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400" %>
+      </div>
+
+      <div class="space-y-1.5">
+        <%= f.label :password_confirmation, "Confirmação de senha", class: "block text-xs font-medium text-slate-200" %>
+        <%= f.password_field :password_confirmation, required: true, autocomplete: "new-password", class: "w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400" %>
+      </div>
     </div>
 
     <div class="flex items-center justify-between pt-2">
-      <%= link_to "Voltar", root_path, class: "text-xs text-slate-300 hover:text-white" %>
+      <div class="text-xs text-slate-300">
+        Já tem conta? <%= link_to "Fazer login", new_motorista_sessao_path, class: "text-emerald-300 hover:text-emerald-200" %>
+      </div>
       <%= f.submit "Concluir cadastro", class: "inline-flex items-center rounded-xl bg-emerald-500 px-4 py-2 text-sm font-semibold text-slate-950 hover:bg-emerald-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950" %>
     </div>
   <% end %>
 </div>
-

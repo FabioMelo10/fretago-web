@@ -1,0 +1,46 @@
+<section id="pedir-frete" role="tabpanel" data-tabs-target="panel" data-panel-id="pedir-frete" class="max-w-xl mx-auto px-4 py-8 space-y-8">
+  <div class="space-y-4">
+    <p class="inline-flex items-center rounded-full border border-emerald-500/40 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-300">
+      Itajaí e região &nbsp;•&nbsp; Pequenos fretes rápidos
+    </p>
+    <h1 class="text-3xl sm:text-4xl font-bold leading-tight">
+      Precisa de frete rápido?
+    </h1>
+    <p class="text-sm text-slate-300">
+      Conectamos você com motoristas próximos para realizar seu frete com agilidade e segurança em Itajaí, Navegantes, Balneário Camboriú e região.
+    </p>
+    <p class="text-xs text-slate-400">
+      Sofá, geladeira, cama, retirada em loja, entregas de marketplace e muito mais.
+    </p>
+  </div>
+
+  <div class="space-y-3">
+    <div class="space-y-2">
+      <%= link_to "Solicitar frete", new_pedido_path,
+                  class: "w-full inline-flex items-center justify-center rounded-xl bg-emerald-500 px-4 py-3 text-sm font-semibold text-slate-950 shadow-sm hover:bg-emerald-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950" %>
+      <%= link_to "Falar no WhatsApp", fregato_whatsapp_link,
+                  target: "_blank",
+                  rel: "noopener noreferrer",
+                  class: "w-full inline-flex items-center justify-center rounded-xl border border-emerald-500/60 bg-slate-900/50 px-4 py-3 text-sm font-semibold text-emerald-300 hover:bg-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950" %>
+    </div>
+    <p class="text-xs text-emerald-300 text-center">Resposta em poucos minutos</p>
+  </div>
+
+  <div class="border-t border-slate-800 pt-6 space-y-3">
+    <h2 class="font-semibold text-sm">Por que escolher FretaGo?</h2>
+    <ul class="space-y-2 text-sm text-slate-300">
+      <li class="flex items-start space-x-2">
+        <span class="text-emerald-400 font-bold mt-0.5">✓</span>
+        <span>Motoristas próximos disponíveis</span>
+      </li>
+      <li class="flex items-start space-x-2">
+        <span class="text-emerald-400 font-bold mt-0.5">✓</span>
+        <span>Atendimento rápido na sua região</span>
+      </li>
+      <li class="flex items-start space-x-2">
+        <span class="text-emerald-400 font-bold mt-0.5">✓</span>
+        <span>Sem taxa oculta</span>
+      </li>
+    </ul>
+  </div>
+</section>

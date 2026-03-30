@@ -6,7 +6,12 @@ import { application } from "./application"
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
-import SubmitController from "./submit_controller"
-application.register("submit", SubmitController)
+
 import PhoneMaskController from "./phone_mask_controller"
 application.register("phone-mask", PhoneMaskController)
+
+import SubmitController from "./submit_controller"
+application.register("submit", SubmitController)
+
+import TabsController from "./tabs_controller"
+application.register("tabs", TabsController)

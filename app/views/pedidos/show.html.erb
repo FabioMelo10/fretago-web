@@ -44,11 +44,8 @@
         </div>
       <% end %>
 
-      <div class="space-y-1.5">
-        <%= f.label :motorista_id, "Motorista", class: "block text-xs font-medium text-slate-200" %>
-        <%= f.collection_select :motorista_id, Motorista.ativos.order(:nome), :id, :nome,
-                                { prompt: "Selecione seu cadastro" },
-                                { class: "w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400" } %>
+      <div class="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-xs text-slate-300">
+        Proposta enviada como: <span class="font-semibold text-slate-100"><%= motorista_atual.nome %></span>
       </div>
 
       <div class="space-y-1.5">
@@ -109,4 +106,3 @@
     <% end %>
   </section>
 </div>
-

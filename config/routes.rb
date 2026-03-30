@@ -16,14 +16,17 @@ Rails.application.routes.draw do
   end
 
   resources :motoristas, only: %i[new create]
+  resource :motorista_sessao, only: %i[new create destroy], path: "motorista/sessao", controller: "motorista_sessoes"
+
+  resource :motorista_painel, only: :show, path: "motorista/painel", controller: "motorista_painel"
 
   namespace :api do
     namespace :v1 do
-      resources :pedidos, only: %i[index show create] do
+      resources :pedidos, only: %i[create] do
         resources :propostas, only: %i[create]
       end
-      resources :motoristas, only: %i[index show create]
-      resources :propostas, only: %i[index show] do
+      resources :motoristas, only: %i[create]
+      resources :propostas, only: [] do
         member do
           patch :aceitar
         end
@@ -31,4 +34,3 @@ Rails.application.routes.draw do
     end
   end
 end
-

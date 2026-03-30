@@ -8611,23 +8611,6 @@ var hello_controller_default = class extends Controller {
   }
 };
 
-// app/javascript/controllers/submit_controller.js
-var submit_controller_default = class extends Controller {
-  static targets = ["button"];
-  connect() {
-    this.element.addEventListener("submit", this.handleSubmit);
-  }
-  disconnect() {
-    this.element.removeEventListener("submit", this.handleSubmit);
-  }
-  handleSubmit = () => {
-    if (!this.hasButtonTarget) return;
-    this.buttonTarget.disabled = true;
-    this.buttonTarget.dataset.originalText = this.buttonTarget.value;
-    this.buttonTarget.value = this.buttonTarget.dataset.submitLoadingText || "Enviando...";
-  };
-};
-
 // app/javascript/controllers/phone_mask_controller.js
 var phone_mask_controller_default = class extends Controller {
   connect() {
@@ -8651,10 +8634,60 @@ var phone_mask_controller_default = class extends Controller {
   }
 };
 
+// app/javascript/controllers/submit_controller.js
+var submit_controller_default = class extends Controller {
+  static targets = ["button"];
+  connect() {
+    this.element.addEventListener("submit", this.handleSubmit);
+  }
+  disconnect() {
+    this.element.removeEventListener("submit", this.handleSubmit);
+  }
+  handleSubmit = () => {
+    if (!this.hasButtonTarget) return;
+    this.buttonTarget.disabled = true;
+    this.buttonTarget.dataset.originalText = this.buttonTarget.value;
+    this.buttonTarget.value = this.buttonTarget.dataset.submitLoadingText || "Enviando...";
+  };
+};
+
+// app/javascript/controllers/tabs_controller.js
+var tabs_controller_default = class extends Controller {
+  static targets = ["tab", "panel"];
+  static values = { defaultTab: String };
+  connect() {
+    const initialTabId = this.defaultTabValue || this.tabTargets[0]?.dataset.tabId;
+    if (initialTabId) this.activate(initialTabId);
+  }
+  select(event) {
+    event.preventDefault();
+    const tabId = event.currentTarget.dataset.tabId;
+    if (!tabId) return;
+    this.activate(tabId);
+  }
+  activate(tabId) {
+    this.tabTargets.forEach((tab) => {
+      const active = tab.dataset.tabId === tabId;
+      tab.setAttribute("aria-selected", active.toString());
+      tab.classList.toggle("border-emerald-500", active);
+      tab.classList.toggle("text-emerald-300", active);
+      tab.classList.toggle("font-semibold", active);
+      tab.classList.toggle("border-transparent", !active);
+      tab.classList.toggle("text-slate-400", !active);
+      tab.classList.toggle("font-medium", !active);
+    });
+    this.panelTargets.forEach((panel) => {
+      const active = panel.dataset.panelId === tabId;
+      panel.classList.toggle("hidden", !active);
+    });
+  }
+};
+
 // app/javascript/controllers/index.js
 application.register("hello", hello_controller_default);
-application.register("submit", submit_controller_default);
 application.register("phone-mask", phone_mask_controller_default);
+application.register("submit", submit_controller_default);
+application.register("tabs", tabs_controller_default);
 /*! Bundled license information:
 
 @hotwired/turbo/dist/turbo.es2017-esm.js:
